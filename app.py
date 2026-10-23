@@ -331,9 +331,6 @@ elif page == "🔬 Analyse":
                     st.markdown("</div>", unsafe_allow_html=True)
             st.caption("Model probability outputs are not the same as medically validated confidence estimates. Shannon entropy is a separate metric.")
 
-        if result.get("class_mapping_verified") is False:
-            st.warning("The API reports that class mapping has not been verified. Confirm with the model developer that the model's class IDs match the intended benign/malignant labels before interpreting the output.")
-
         interpretability = result.get("interpretability") or {}
         heatmap_data = interpretability.get("heatmap_data")
         if interpretability.get("available") and heatmap_data:
