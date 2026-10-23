@@ -3,6 +3,7 @@ uvicorn
 python-multipart
 scikit-learn
 numpy
+pandas
 Pillow
 joblib
 --extra-index-url https://download.pytorch.org/whl/cpu
