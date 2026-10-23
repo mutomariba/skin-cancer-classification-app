@@ -3,4 +3,4 @@ requests
 pandas
 numpy
 matplotlib
-Pillow
+Pillow==10.4.0
