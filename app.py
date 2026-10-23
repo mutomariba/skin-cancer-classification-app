@@ -153,6 +153,28 @@ div.stButton > button[kind="primary"]:hover { background:var(--navy); border-col
 [data-testid="stMetricLabel"] { color:var(--muted); }
 [data-testid="stMetricValue"] { color:var(--navy); }
 hr { border-color:var(--line); }
+
+/* Fix faint text in Streamlit information and success messages */
+[data-testid="stAlert"],
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] div,
+[data-testid="stAlert"] span {
+    color: #243447 !important;
+    opacity: 1 !important;
+}
+
+/* Improve readability of captions and descriptive text */
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] p {
+    color: #475569 !important;
+    opacity: 1 !important;
+}
+
+/* Ensure pale custom message boxes have readable text */
+.stApp .notice {
+    color: #6c520b !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
