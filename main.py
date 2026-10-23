@@ -163,13 +163,13 @@ async def predict(file: UploadFile = File(...)):
 
     # Extract feature maps: (1, 2048, 7, 7).
     with torch.inference_mode():
-    spatial_tensor = spatial_extractor(image_tensor)
-    features = (
-        spatial_tensor.mean(dim=(2, 3))
-        .cpu()
-        .numpy()
-        .astype(np.float32)
-    )
+        spatial_tensor = spatial_extractor(image_tensor)
+        features = (
+            spatial_tensor.mean(dim=(2, 3))
+            .cpu()
+            .numpy()
+            .astype(np.float32)
+        )
 
     if features.shape[1] != scaler.n_features_in_:
         raise HTTPException(
