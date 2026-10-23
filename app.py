@@ -11,7 +11,7 @@ from PIL import Image
 # ------------------------------------------------------------
 # CONFIGURATION
 # ------------------------------------------------------------
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://skin-cancer-classification-app-imab.onrender.com"
 APP_TITLE = "Skin Lesion Research Dashboard"
 
 st.set_page_config(
