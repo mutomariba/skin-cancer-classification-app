@@ -208,7 +208,7 @@ async def predict(file: UploadFile = File(...)):
     heatmap = np.einsum(
         "c,chw->hw",
         target_weights,
-        spatial_features
+        features
     )
 
     # Retain positive spatial evidence and normalize it.
