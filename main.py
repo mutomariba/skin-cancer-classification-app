@@ -161,15 +161,25 @@ async def predict(file: UploadFile = File(...)):
     # Apply the pretrained ResNet-50 preprocessing.
     image_tensor = preprocess(image).unsqueeze(0).to(device)
 
-    # Extract feature maps: (1, 2048, 7, 7).
+    # Extract spatial feature maps and pooled classification features.
     with torch.inference_mode():
         spatial_tensor = spatial_extractor(image_tensor)
-        features = (
-            spatial_tensor.mean(dim=(2, 3))
-            .cpu()
-            .numpy()
-            .astype(np.float32)
-        )
+
+    # Keep spatial dimensions for LFAM heatmap generation.
+    spatial_features = (
+        spatial_tensor[0]
+        .cpu()
+        .numpy()
+        .astype(np.float32)
+    )
+
+    # Pool spatial dimensions for the scaler, PCA and SVM.
+    features = (
+        spatial_tensor.mean(dim=(2, 3))
+        .cpu()
+        .numpy()
+        .astype(np.float32)
+    )
 
     if features.shape[1] != scaler.n_features_in_:
         raise HTTPException(
@@ -208,7 +218,7 @@ async def predict(file: UploadFile = File(...)):
     heatmap = np.einsum(
         "c,chw->hw",
         target_weights,
-        features
+        spatial_features
     )
 
     # Retain positive spatial evidence and normalize it.
