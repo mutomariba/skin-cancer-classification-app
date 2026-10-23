@@ -162,7 +162,7 @@ async def predict(file: UploadFile = File(...)):
     image_tensor = preprocess(image).unsqueeze(0).to(device)
 
     # Extract feature maps: (1, 2048, 7, 7).
-   with torch.inference_mode():
+    with torch.inference_mode():
     spatial_tensor = spatial_extractor(image_tensor)
     features = (
         spatial_tensor.mean(dim=(2, 3))
@@ -170,11 +170,6 @@ async def predict(file: UploadFile = File(...)):
         .numpy()
         .astype(np.float32)
     )
-
-    # Global average pooling: (2048, 7, 7) -> (1, 2048).
-    features = spatial_features.mean(
-        axis=(1, 2)
-    ).reshape(1, -1)
 
     if features.shape[1] != scaler.n_features_in_:
         raise HTTPException(
