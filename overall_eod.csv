@@ -1,7 +1,0 @@
-Method,EOD
-baseline,0.000 ± 0.000
-ros,0.250 ± 0.093
-rus,0.444 ± 0.241
-smote,0.306 ± 0.167
-adasyn,0.305 ± 0.103
-class weighting,0.000 ± 0.000
