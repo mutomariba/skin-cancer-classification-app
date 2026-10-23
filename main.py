@@ -162,9 +162,8 @@ async def predict(file: UploadFile = File(...)):
     image_tensor = preprocess(image).unsqueeze(0).to(device)
 
     # Extract feature maps: (1, 2048, 7, 7).
-    with torch.no_grad():
-        with torch.inference_mode():
-    spatial_tensor = spatial_extractor(image_tensor)
+    with torch.inference_mode():
+        spatial_tensor = spatial_extractor(image_tensor)
 
     spatial_features = (
         spatial_tensor[0]
