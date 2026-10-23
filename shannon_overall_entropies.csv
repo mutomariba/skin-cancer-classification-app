@@ -1,7 +1,0 @@
-Method,Shannon Entropy
-baseline,0.739 ± 0.055
-ros,0.233 ± 0.323
-rus,0.765 ± 0.251
-smote,0.293 ± 0.341
-adasyn,0.365 ± 0.351
-class weighting,0.740 ± 0.061
