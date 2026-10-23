@@ -1,11 +1,10 @@
 fastapi
 uvicorn
 python-multipart
+torch
+torchvision
 scikit-learn
 numpy
 pandas
 Pillow
 joblib
---extra-index-url https://download.pytorch.org/whl/cpu
-torch
-torchvision
